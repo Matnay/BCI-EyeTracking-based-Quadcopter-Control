@@ -55,28 +55,28 @@ def set_position():
 	x,y = pyautogui.position()
 	pos=TwistStamped()
 	pos.header = Header()
-	print("xc is " + str(xc))
+	#print("xc is " + str(xc))
 	if(xc<680 and yc<380):
 		pos.twist.linear.z=0.0
-		pos.twist.linear.x=-12
-		pos.twist.linear.y=-12
-		print("inside conditoion1")
+		pos.twist.linear.x=-1
+		pos.twist.linear.y=-1
+		print("forward_left")
 	elif(xc<680 and yc>380):
 		pos.twist.linear.z=0.0
-		pos.twist.linear.x=-12
-		pos.twist.linear.y=12
+		pos.twist.linear.x=-1
+		pos.twist.linear.y=1
 		print("forward_right")
 
 	elif(xc>680 and yc<380):
 		pos.twist.linear.z=0.0
-		pos.twist.linear.x=12
-		pos.twist.linear.y=12
+		pos.twist.linear.x=1
+		pos.twist.linear.y=1
 		print("backward_left")
 
 	elif(xc>680 and yc>380):
 		pos.twist.linear.z=0.0
-		pos.twist.linear.x=12
-		pos.twist.linear.y=-12
+		pos.twist.linear.x=1
+		pos.twist.linear.y=-1
 		print("backward_right")
 
 	else: 
