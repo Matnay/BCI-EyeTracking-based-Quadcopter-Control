@@ -1,13 +1,14 @@
 # Quad_BCI_EYE_TRACK_FUSION_EKF
 Quadcopter Control Along with sensor fusion of EEG data along with eye tracking data using the Extended Kalman Filter
 
-Eviacam was used for gazetracking 
-You can download the software 
-All algorithms can be simulated on the px4 SITL simulator using Gazebo.
+Eviacam was used for gazetracking ,
+You can download the software using the steps given below-
+
 ```
 sudo apt-get update
 sudo apt-get install eviacam
 ```
+All algorithms can be simulated on the px4 SITL simulator using Gazebo.
 https://github.com/PX4/sitl_gazebo
 
 For setting up your workspace and execution of files;
