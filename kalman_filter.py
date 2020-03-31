@@ -46,3 +46,19 @@ class Kalman:
 if __name__ == '__main__':
 	kalman=Kalman()
 	kalman.initialisation()
+'''
+measurements = [5., 6., 7., 9., 10.]
+motions = [1., 1., 2., 1., 1.]
+measurement_sig = 4.
+motion_sig = 2.
+mu = 0.
+sig = 10000.
+
+for n in range(len(measurements)):    
+    mu, sig = update(mu, sig, measurements[n], measurement_sig)
+    print('Update: [{}, {}]'.format(mu, sig))
+    mu, sig = predict(mu, sig, motions[n], motion_sig)
+    print('Predict: [{}, {}]'.format(mu, sig))
+print('\n')
+print('Final result: [{}, {}]'.format(mu, sig))
+'''
