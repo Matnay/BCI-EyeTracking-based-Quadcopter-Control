@@ -47,8 +47,8 @@ if __name__ == '__main__':
 	kalman=Kalman()
 	kalman.initialisation()
 '''
-measurements = [5., 6., 7., 9., 10.]
-motions = [1., 1., 2., 1., 1.]
+measurements = [0,1,2,3,4,5,6,7,8,10]
+motions = [1,1,1,1,1,1,1,1,1,2]
 measurement_sig = 4.
 motion_sig = 2.
 mu = 0.
