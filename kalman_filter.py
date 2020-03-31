@@ -25,7 +25,7 @@ def data_cb(msg):
 
 if __name__ == '__main__':
 	#rospy.init_node("kalman")
-	#data_sub=rospy.Subscriber("data",String,data_cb)
+	#data_sub=rospy.Subscriber("data",Int32,data_cb)
 	measurements = [1,2,3,4,5,6,7,8,9,11]
 	motions = [1,1,1,1,1,1,1,1,1,2]
 
