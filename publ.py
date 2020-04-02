@@ -3,7 +3,7 @@ import rospy
 from std_msgs.msg import Int32
 from random import seed 
 from random import randint
-from future import time
+import time
 
 def random_generate():
     return randint(1,2)
