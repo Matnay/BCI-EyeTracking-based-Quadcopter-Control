@@ -1,31 +1,43 @@
+import rospy
+from std_msgs.msg import Int32,Float32,String
+from math import *
 import numpy as np
 from numpy.linalg import inv
-import matplotlib.pyplot as plt
+import time
+import statistics
+class Least_Square_Estimation:
+    def __init__(self):
+        self.action_1=0
+        self.data_sub=rospy.Subscriber("chatter",Int32,self.data_cb)
+        self.final_pub=rospy.Publisher("action",Float32,queue_size=1)
+        self.y=[0.,0.,0.,0.,0.,0.,0.,0.,0.]
 
-I = np.mat([0.2, 0.3, 0.4, 0.5, 0.6]).T
-V = np.mat([1.23, 1.38, 2.06, 2.47, 3.17]).T
-plt.scatter(np.asarray(I), np.asarray(V))
+    def data_cb(self,msg):
+            global action_1
+            self.prev_action=self.action_1
+            self.action_1=msg.data
+            return self.action_1
+    
+    def construct_y(self,val):
+        self.y.append(val)
+        print(self.y)
+        if (len(self.y)>=10):
+            self.y.pop(0)
+        self.y_constructed=np.mat([self.y]).T
 
-plt.xlabel('Current (A)')
-plt.ylabel('Voltage (V)')
-plt.grid(True)
-plt.show()
+    def initialisation(self):
+        rospy.init_node("lse")
+        rate=rospy.Rate(2)
+        H=np.mat([1,1,1,1,1,1,1,1,1]).T
+        while not rospy.is_shutdown():
+            self.construct_y(self.action_1)
+            true_value=inv(H.T.dot(H)).dot(H.T.dot(self.y_constructed))  
+            print('\n')
+            ans=true_value.tolist()
+            print('Final LSE estimated value: [{}]'.format(ans[0][0]))
+            self.final_pub.publish(ans[0][0])
+            rate.sleep()
 
-H=np.mat([1,1,1,1,1]).T
- 
-y=np.divide(V,I)
-R=inv(H.T.dot(H)).dot(H.T.dot(y))
-print('The slope parameter (i.e., resistance) for the best-fit line is:')
-print(R)
-
-I_line = np.arange(0, 0.8, 0.1)
-V_line = 5.2246667*I_line
-print(I_line)
-print(V_line)
-
-plt.scatter(np.asarray(I), np.asarray(V))
-plt.plot(I_line, V_line)
-plt.xlabel('current (A)')
-plt.ylabel('voltage (V)')
-plt.grid(True)
-plt.show()
+if __name__ == '__main__':
+    lse=Least_Square_Estimation()
+    lse.initialisation()
