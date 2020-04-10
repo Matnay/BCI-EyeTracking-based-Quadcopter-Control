@@ -10,7 +10,7 @@ class Least_Square_Estimation_f:
         self.action_1=0
         self.data_sub=rospy.Subscriber("forward",Int32,self.data_cb)
         self.final_pub=rospy.Publisher("action_f",Float32,queue_size=1)
-        self.y=[0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        self.y=[0.,0.,0.,0.,0.]
 
     def data_cb(self,msg):
             self.prev_action=self.action_1
@@ -25,7 +25,7 @@ class Least_Square_Estimation_f:
     def construct_y(self,val):
         self.y.append(val)
         print(self.y)
-        if (len(self.y)>=10):
+        if (len(self.y)>=5):
             self.y.pop(0)
         self.y_constructed=np.mat([self.y]).T
 
@@ -34,7 +34,7 @@ class Least_Square_Estimation_b:
         self.action_2=0
         self.data_sub=rospy.Subscriber("backward",Int32,self.data_cb)
         self.final_pub=rospy.Publisher("action_b",Float32,queue_size=1)
-        self.y=[0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        self.y=[0.,0.,0.,0.,0]
 
     def data_cb(self,msg):
             self.prev_action=self.action_2
@@ -49,7 +49,7 @@ class Least_Square_Estimation_b:
     def construct_y(self,val):
         self.y.append(val)
         print(self.y)
-        if (len(self.y)>=10):
+        if (len(self.y)>=5):
             self.y.pop(0)
         self.y_constructed=np.mat([self.y]).T
 
@@ -58,7 +58,7 @@ class Least_Square_Estimation_r:
         self.action_3=0
         self.data_sub=rospy.Subscriber("right",Int32,self.data_cb)
         self.final_pub=rospy.Publisher("action_r",Float32,queue_size=1)
-        self.y=[0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        self.y=[0.,0.,0.,0.,0.]
 
     def data_cb(self,msg):
             self.prev_action=self.action_3
@@ -73,7 +73,7 @@ class Least_Square_Estimation_r:
     def construct_y(self,val):
         self.y.append(val)
         print(self.y)
-        if (len(self.y)>=10):
+        if (len(self.y)>=5):
             self.y.pop(0)
         self.y_constructed=np.mat([self.y]).T
 
@@ -83,7 +83,7 @@ class Least_Square_Estimation_l:
         self.action_4=0
         self.data_sub=rospy.Subscriber("left",Int32,self.data_cb)
         self.final_pub=rospy.Publisher("action_l",Float32,queue_size=1)
-        self.y=[0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        self.y=[0.,0.,0.,0.,0.]
 
     def data_cb(self,msg):
             self.prev_action=self.action_4
@@ -98,7 +98,7 @@ class Least_Square_Estimation_l:
     def construct_y(self,val):
         self.y.append(val)
         print(self.y)
-        if (len(self.y)>=10):
+        if (len(self.y)>=5):
             self.y.pop(0)
         self.y_constructed=np.mat([self.y]).T
 
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     lse_l=Least_Square_Estimation_l()
     rospy.init_node("lse")
     rate=rospy.Rate(2)
-    H=np.mat([1,1,1,1,1,1,1,1,1]).T
+    H=np.mat([1,1,1,1,1]).T
     while not rospy.is_shutdown():
         lse_l.construct_y(lse_l.action_4)
         true_value=inv(H.T.dot(H)).dot(H.T.dot(lse_l.y_constructed))  
