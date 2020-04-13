@@ -22,21 +22,25 @@ def square(iteration):
 	path_square.header.stamp =rospy.Time.now() 
 	pose_sq = PoseStamped()
 	path_square.header.frame_id="map"
-	if(iteration<=100):
-		pose_sq.pose.position.x=pose_sq.pose.position.x+1
-		pose_sq.pose.position.y=pose_sq.pose.position.y
+	if(iteration<=10):
+		pose_sq.pose.position.x=0
+		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
-	if(iteration>=100 and iteration<200):
-		pose_sq.pose.position.x=pose_sq.pose.position.x
-		pose_sq.pose.position.y=pose_sq.pose.position.y+1
+	if(iteration>=10 and iteration<20):
+		pose_sq.pose.position.x=5
+		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
-	if(iteration>=200 and iteration<300):
-		pose_sq.pose.position.x=pose_sq.pose.position.x-1
-		pose_sq.pose.position.y=pose_sq.pose.position.y
+	if(iteration>=20 and iteration<30):
+		pose_sq.pose.position.x=5
+		pose_sq.pose.position.y=5
 		pose_sq.pose.position.z=2
-	if(iteration>=300 and iteration<400):
-		pose_sq.pose.position.x=pose_sq.pose.position.x
-		pose_sq.pose.position.y=pose_sq.pose.position.y-1
+	if(iteration>=30 and iteration<40):
+		pose_sq.pose.position.x=0
+		pose_sq.pose.position.y=5
+		pose_sq.pose.position.z=2
+	if(iteration>=40 and iteration<50):
+		pose_sq.pose.position.x=0
+		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
 	path_square.poses.append(pose_sq)
 	path_pub_sq.publish(path_square)
