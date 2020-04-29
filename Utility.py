@@ -42,7 +42,7 @@ class Utility:
 		while not rospy.is_shutdown():
 			time.sleep(10)
 			print("Utility calculation started!")
-			if(self.check()>0.01):
+			if(self.check()>0.001):
 				utility=utility+(1/self.check())
 			time.sleep(1)
 			print(self.check())
