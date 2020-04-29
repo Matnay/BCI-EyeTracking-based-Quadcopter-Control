@@ -13,7 +13,7 @@ class Utility:
 		self.act_sub=rospy.Subscriber('action',Int32,self.act_cb)
 		self.action=0
 		self.time_initial=rospy.Time.now()
-		self.error=1
+		error=0
 		self.pose_st = PoseStamped()
 
 	def act_cb(self,msg):
@@ -23,24 +23,30 @@ class Utility:
 		self.pose_st.header = data.header
 		self.pose_st.pose = data.pose.pose
 
-	def check(self):
-		if(self.action==2):
-			self.error=self.error+abs(self.pose_st.pose.position.y)
-		if(self.action==3):
-			self.error=self.error+abs(self.pose_st.pose.position.x-5)
-		if(self.action==4):
-			self.error=self.error+abs(self.pose_st.pose.position.y-5)
-		if(self.action==5):	
-			self.error=self.error+abs(self.pose_st.pose.position.x)
-		u=(1/self.error)
-		print(("Utility: {}").format(u))	
+	def check(self,error):
+		if(self.pose_st.pose.position.x<0.5):
+			error=abs(self.pose_st.pose.position.y)
+		elif(self.pose_st.pose.position.x>4.6 or self.pose_st.pose.position.x<5.4):
+			error=abs(self.pose_st.pose.position.y)
+		elif(self.pose_st.pose.position.y>4.6 or self.pose_st.pose.position.y<5.4):
+			error=abs(self.pose_st.pose.position.x-5)
+		elif(self.pose_st.pose.position.x<0.2 or self.pose_st.pose.position.x>-0.2):
+			error=abs(self.pose_st.pose.position.y-5)
+		elif(self.pose_st.pose.position.x>4.6 or self.pose_st.pose.position.x<5.4):
+			error=abs(self.pose_st.pose.position.x)
+		#u=(1/error)
+		return error
+		#print(("Utility: {}").format(u))	
 
 	def initialization(self):
+		error=1
 		while not rospy.is_shutdown():
-			self.check()
-
+			error=error+self.check(error)
+			time.sleep(1)
+			print(error)
+		print(("Utility:{}").format(1/error))
 if __name__ == '__main__':
 	rospy.init_node('error_node')
 	rate=rospy.Rate(10)
-	utility=Utility()	
+	utility=Utility()
 	utility.initialization()
