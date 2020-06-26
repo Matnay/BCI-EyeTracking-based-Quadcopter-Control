@@ -95,3 +95,5 @@ rosrun <package_name> <script_name.py>
 ```
 ![Image EXAMPLE RESULT3](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Screenshot%20from%202020-05-01%2015-56-23.png)
 
+FUTURE WORK
+Implement own DL agorithm for robust classification
