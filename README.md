@@ -74,20 +74,20 @@ make posix_sitl_default gazebo
 catkin build
 ```
 
-Open a new terminal and type:
+* Open a new terminal and type:
 ```
 sudo gedit ~/.bashrc
 ```
-Add the following lines to the file that opens:
+* Add the following lines to the file that opens:
 ```
 source ~/catkin_ws/devel/setup.bash
 source ~/catkin_ws/src/Firmware/Tools/setup_gazebo.bash ~/catkin_ws/src/Firmware/ ~/catkin_ws/src/Firmware/build/posix_sitl_default
 export ROS_PACKAGE_PATH=ROS_PACKAGE_PATH:~/catkin_ws/src/Firmware
 export ROS_PACKAGE_PATH=ROS_PACKAGE_PATH:~/catkin_ws/src/Firmware/Tools/sitl_gazebo
 ```
-Create a new workspace and copy the codes into the 'src' directory
-The package can directly be placed in the /src of your package
-Run the scripts by
+* Create a new workspace and copy the codes into the 'src' directory
+ The package can directly be placed in the /src of your package
+ Run the scripts by
 ```
 cd <workspace_name>
 source devel/setup.bash
@@ -96,4 +96,4 @@ rosrun <package_name> <script_name.py>
 ![Image EXAMPLE RESULT3](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Screenshot%20from%202020-05-01%2015-56-23.png)
 
 FUTURE WORK
-Implement own DL agorithm for robust classification
+* Implement own DL agorithm for robust classification
