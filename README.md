@@ -97,3 +97,4 @@ rosrun <package_name> <script_name.py>
 
 FUTURE WORK
 * Implement own DL agorithm for robust classification
+* Incorporate RADAR data
