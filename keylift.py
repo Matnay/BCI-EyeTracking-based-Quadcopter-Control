@@ -105,9 +105,9 @@ def set_p():
        elif keys[pygame.K_s]:
           pos.twist.linear.x=-1
        elif keys[pygame.K_d]:
-          pos.twist.linear.y=1
-       elif keys[pygame.K_a]:
           pos.twist.linear.y=-1
+       elif keys[pygame.K_a]:
+          pos.twist.linear.y=1
        elif keys[pygame.K_q]:
           pos.twist.linear.z=2
           print "rise"
