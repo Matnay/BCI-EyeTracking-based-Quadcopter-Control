@@ -4,7 +4,7 @@ import time
 from nav_msgs.msg import Path
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped,Pose
-
+from std_msgs.msg import Int32
 path = Path()
 path_square=Path()
 action=0
@@ -30,31 +30,31 @@ def square(iteration):
 	path_square.header.stamp =rospy.Time.now() 
 	pose_sq = PoseStamped()
 	path_square.header.frame_id="map"
-	if(action==0):
+	if(iteration>=5):
 		pose_sq.pose.position.x=0
 		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
 		action_pub.publish(1)
 
-	if(action==1):
+	if(iteration>=10):
 		pose_sq.pose.position.x=5
 		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
 		action_pub.publish(2)
 		
-	if(action==2):
+	if(iteration>=15):
 		pose_sq.pose.position.x=5
 		pose_sq.pose.position.y=5
 		pose_sq.pose.position.z=2
 		action_pub.publish(3)
 
-	if(action==3):
+	if(iteration>=20):
 		pose_sq.pose.position.x=0
 		pose_sq.pose.position.y=5
 		pose_sq.pose.position.z=2
 		action_pub.publish(4)
 
-	if(action==4):
+	if(iteration>=30):
 		pose_sq.pose.position.x=0
 		pose_sq.pose.position.y=0
 		pose_sq.pose.position.z=2
@@ -77,5 +77,4 @@ if __name__ == '__main__':
 		count=count+1
 		square(count)
 		rate.sleep()
-
 
