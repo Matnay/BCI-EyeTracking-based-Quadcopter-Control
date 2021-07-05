@@ -11,7 +11,7 @@ sudo apt-get install eviacam
 All algorithms can be simulated on the px4 SITL simulator using Gazebo.
 https://github.com/PX4/sitl_gazebo
 
-![Image EXAMPLE RESULT1](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Screenshot%20from%202019-06-30%2019-06-19.png)
+![Image EXAMPLE RESULT1](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Pictures/Screenshot%20from%202019-06-30%2019-06-19.png)
 For setting up your workspace and execution of files;
 
 STEP 1:
@@ -45,7 +45,7 @@ pip install \
 	toml \
 	pyquaternion
 ```
-![Image EXAMPLE RESULT2](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Screenshot%20from%202020-03-13%2023-10-28.png)
+![Image EXAMPLE RESULT2](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Pictures/Screenshot%20from%202020-03-13%2023-10-28.png)
 Create a new workspace:	
 ```	
 mkdir -p ~/catkin_ws/src
@@ -93,7 +93,7 @@ cd <workspace_name>
 source devel/setup.bash
 rosrun <package_name> <script_name.py>
 ```
-![Image EXAMPLE RESULT3](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Screenshot%20from%202020-05-01%2015-56-23.png)
+![Image EXAMPLE RESULT3](https://github.com/Matnay/Quad_BCI_EYE_TRACK_FUSION_EKF/blob/master/Pictures/Screenshot%20from%202020-05-01%2015-56-23.png)
 
 FUTURE WORK
 * Implement own DL agorithm for robust classification
